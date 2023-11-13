@@ -400,7 +400,7 @@ map.on('load', () => {
       'fill-color': 'transparent',
       'fill-opacity': 1.0
     },
-    'filter': ['!=', 'hazard', 'FZLVL']
+    'filter': ['all', ['!=', 'hazard', 'FZLVL'], ['!=', 'hazard', 'M_FZLVL']]
   });
   map.addLayer({ //LABELS
     'id': 'airmet-labels',
@@ -419,7 +419,7 @@ map.on('load', () => {
       'text-halo-width': 2,
       'text-color': '#000000'
     },
-    'filter': ['!=', 'title', 'FZLVL']
+    'filter': ['all', ['!=', 'title', 'FZLVL'], ['!=', 'title', 'M_FZLVL']]
   });
   map.addLayer({ //FOR POPUPS
     'id': 'airmet-outline',
@@ -430,7 +430,7 @@ map.on('load', () => {
       'line-color': '#303236',
       'line-width': 2
     },
-    'filter': ['!=', 'hazard', 'FZLVL']
+    'filter': ['all', ['!=', 'hazard', 'FZLVL'], ['!=', 'hazard', 'M_FZLVL']]
   });
   map.on('click', 'airmet-popup', (e) => {
     new mapboxgl.Popup()
