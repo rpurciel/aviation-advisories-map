@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+<script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+<style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .mapboxgl-popup-content {
+      min-width: 400px;
+      background-color: rgba(45, 45, 45, 0.8);
+      font: 12px/20px Helvetica, sans-serif;
+      color: #ffffff;
+      text-shadow: 0 0 4px #000000;
+    }
+    
+    .mapboxgl-popup-anchor-top .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+      border-bottom-color: rgba(45, 45, 45, 0.8);
+    }
+
+    .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip,
+    .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {
+      border-top-color: rgba(45, 45, 45, 0.8);
+    }
+
+    .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+      border-right-color: rgba(45, 45, 45, 0.8);
+    }
+
+    .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+      border-left-color: rgba(45, 45, 45, 0.8);
+    }
+
+    #info {
+      display: table;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      margin: 0px auto;
+      word-wrap: anywhere;
+      white-space: pre-wrap;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      font: 12px Helvetica, sans-serif;
+      text-align: center;
+      color: #F5F5F5;
+      background: rgba(45, 45, 45, 0.8);
+      text-shadow: 0 0 4px #000000;
+    }
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<pre id="info">Data sourced from Aviation Weather Center, NOAA</pre>
+<script src="NewAWCMap.js"></script>
+</body>
+</html>
