@@ -66,7 +66,8 @@ function replaceWithKindWords(inputString, type = null) {
     .replace("dueTo", "Issued Due To")
     .replace("issueTime", "Time AIRMET Issued")
     .replace("validTime", "AIRMET Valid To")
-    .replace("forecast", "Forecast Hour Issued");
+    .replace("forecast", "Forecast Hour Issued")
+    .replace("receiptTime", "Time AIRMET Recieved by Server");
   } else if (type == "pirep-abbr") {
     var outputString = inputString.replace("icaoId", "ICAO ID")
     .replace("obsTime", "Time Report Issued")
