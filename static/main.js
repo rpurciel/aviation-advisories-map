@@ -246,7 +246,7 @@ airmetLabelProcessor().then(() => {
   //console.log(isigmetLabels)
 });
 
-mapboxgl.accessToken = config;
+mapboxgl.accessToken = 'pk.eyJ1IjoicnB1cmNpZWwiLCJhIjoiY2xsNzFjaGx4MDRmNDNwcHIxbDl3ZDBvciJ9.Wpocq8eWQoUkerFMZC2ecA';
 const map = new mapboxgl.Map({
   container: 'map', // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
