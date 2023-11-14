@@ -178,7 +178,7 @@ function showDisclaimer() {
   var isFired = localStorage.getItem('disclaimerShown');
 
   if (isFired != '1'){
-      alert("DISCLAIMER: \nThis map is for informational purposes only.\nDo not use this map to make decisions, consult official information.\nGraphical representations of area-based products are not guaranteed to be accurate.\n\nBy closing this window, you acknoledge the above statements.");
+      alert("**DISCLAIMER:**\nThe following map is provided solely for informational purposes.\nUnder no circumstances should this map be utilized to make consequential decisions; instead, rely on authoritative sources for accurate information.\nGraphical depictions of area-based products are not assured to be precise.\n\nBy closing this window, you confirm your understanding and acceptance of the aforementioned statements.");
       localStorage.setItem('disclaimerShown', '1');
   }
 }
