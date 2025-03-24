@@ -127,7 +127,7 @@ function generatePopupUsingContents(propertiesObject, type = null) {
 
   var popupText = "";
 
-  if (propertiesObject.data == "GAIRMET") {
+  if ("dueTo" in propertiesObject) {
     if (propertiesObject.product != "") {
       popupText = popupText.concat("<h1>" + replaceWithKindWords(propertiesObject.hazard, "hazard-title") + " AIRMET</h1><h2>" + propertiesObject.product + "</h2>");
     } else {
@@ -138,21 +138,21 @@ function generatePopupUsingContents(propertiesObject, type = null) {
       if (Object.keys(propertiesObject)[i] != "product" && Object.keys(propertiesObject)[i] != "data" && Object.keys(propertiesObject)[i] != "hazard" && Object.keys(propertiesObject)[i] != "alphaChar")
       popupText = popupText.concat("<b>" + replaceWithKindWords(Object.keys(propertiesObject)[i], "airmet-abbr") + "</b>: " + propertiesObject[Object.keys(propertiesObject)[i]] + "<br>");
     };
-  } else if (propertiesObject.data == "SIGMET") {
+  } else if ("rawAirSigmet" in propertiesObject) {
     popupText = popupText.concat("<h1>" + replaceWithKindWords(propertiesObject.hazard, "hazard-title") + " " + propertiesObject.airSigmetType + "</h1>");
 
     for (var i = 0; i < Object.keys(propertiesObject).length; i++) {
       if (Object.keys(propertiesObject)[i] != "airSigmetType" && Object.keys(propertiesObject)[i] != "data" && Object.keys(propertiesObject)[i] != "hazard" && Object.keys(propertiesObject)[i] != "alphaChar")
       popupText = popupText.concat("<b>" + replaceWithKindWords(Object.keys(propertiesObject)[i], "sigmet-abbr") + "</b>: " + propertiesObject[Object.keys(propertiesObject)[i]] + "<br>");
     };
-  } else if (propertiesObject.data == "ISIGMET") {
+  } else if ("rawSigmet" in propertiesObject) {
     popupText = popupText.concat("<h1>" + replaceWithKindWords(propertiesObject.hazard, "hazard-title") + " SIGMET</h1>");
 
     for (var i = 0; i < Object.keys(propertiesObject).length; i++) {
       if (Object.keys(propertiesObject)[i] != "geom" && Object.keys(propertiesObject)[i] != "data" && Object.keys(propertiesObject)[i] != "hazard" && Object.keys(propertiesObject)[i] != "coords")
       popupText = popupText.concat("<b>" + replaceWithKindWords(Object.keys(propertiesObject)[i], "isigmet-abbr") + "</b>: " + propertiesObject[Object.keys(propertiesObject)[i]] + "<br>");
     };
-  } else if (propertiesObject.data == "AIREP") {
+  } else if ("airepType" in propertiesObject) {
 
     popupText = popupText.concat("<h1>" + propertiesObject.airepType + " " + propertiesObject.acType +  "</h1>");
 
@@ -160,7 +160,7 @@ function generatePopupUsingContents(propertiesObject, type = null) {
       if (Object.keys(propertiesObject)[i] != "data" && Object.keys(propertiesObject)[i] != "airepType" && Object.keys(propertiesObject)[i] != "acType")
       popupText = popupText.concat("<b>" + replaceWithKindWords(Object.keys(propertiesObject)[i], "pirep-abbr") + "</b>: " + propertiesObject[Object.keys(propertiesObject)[i]] + "<br>");
     };
-  } else if (propertiesObject.data == "METAR"){ 
+  } else if ("rawOb" in propertiesObject){ 
     popupText = popupText.concat("<h1>" + propertiesObject.id + "</h1>");
 
     for (var i = 0; i < Object.keys(propertiesObject).length; i++) {
@@ -223,15 +223,15 @@ let isigmetLabels, sigmetLabels, airmetLabels;
 
 
 const isigmetLabelProcessor = async () => {
-  isigmetLabels = await generateLabels('https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php')
+  isigmetLabels = await generateLabels('https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php')
 }
 
 const sigmetLabelProcessor = async () => {
-  sigmetLabels = await generateLabels('https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/SigmetJSON.php')
+  sigmetLabels = await generateLabels('https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/SigmetJSON.php')
 }
 
 const airmetLabelProcessor = async () => {
-  airmetLabels = await generateLabels('https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/GairmetJSON.php')
+  airmetLabels = await generateLabels('https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/GairmetJSON.php')
 }
 
 isigmetLabelProcessor().then(() => {
@@ -262,7 +262,7 @@ map.on('load', () => {
   //SOURCES
   map.addSource('isigmet', {
     'type': 'geojson',
-    'data': 'https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php'
+    'data': 'https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/IsigmetJSON.php'
   });
 
   map.addSource('isigmet-labels', {
@@ -272,7 +272,7 @@ map.on('load', () => {
 
   map.addSource('sigmet', {
     'type': 'geojson',
-    'data': 'https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/SigmetJSON.php'
+    'data': 'https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/SigmetJSON.php'
   });
   
     map.addSource('sigmet-labels', {
@@ -282,7 +282,7 @@ map.on('load', () => {
 
   map.addSource('airmet', {
     'type': 'geojson',
-    'data': 'https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/GairmetJSON.php'
+    'data': 'https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/GairmetJSON.php'
   });
   
   map.addSource('airmet-labels', {
@@ -292,12 +292,12 @@ map.on('load', () => {
   
   map.addSource('pirep', {
     'type': 'geojson',
-    'data': 'https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/AirepJSON.php?bbox=0,-90,360,90&age=6'
+    'data': 'https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/AirepJSON.php?bbox=0,-90,360,90&age=6'
   });
 
   map.addSource('metar', {
     'type': 'geojson',
-    'data': "https://wxdash-cors-22bcf3a70f54.herokuapp.com/https://www.aviationweather.gov/cgi-bin/json/MetarJSON.php?bbox=0,-90,360,90"
+    'data': "https://corsproxy.io/?url=https://www.aviationweather.gov/cgi-bin/json/MetarJSON.php?bbox=0,-90,360,90"
   })
 
 /*
