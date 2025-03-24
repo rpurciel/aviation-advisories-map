@@ -127,7 +127,7 @@ function generatePopupUsingContents(propertiesObject, type = null) {
 
   var popupText = "";
 
-  if ("hazard" in propertiesObject) {
+  if ("receiptTime" in propertiesObject) {
     if (propertiesObject.product != "") {
       popupText = popupText.concat("<h1>" + replaceWithKindWords(propertiesObject.hazard, "hazard-title") + " AIRMET</h1><h2>" + propertiesObject.product + "</h2>");
     } else {
